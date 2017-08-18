@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<!------分------割------线------>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="Author" content="Bruce Zhu">
+    <title>分页器</title>
+    <link rel="stylesheet" type="text/css" href="" />
+    <style type="text/css">
+		/*分页*/
+		.page_num {
+			text-align: center;
+			background: #fff;
+		}
+		.page_num li {
+			display: inline-block;
+			width: 50px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+		}
+		.page_num li a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+			color: #333;
+		}
+		.page_num .active a{
+			color: #fff;
+			background: #f64949;
+		}
+    </style>
+
+</head>
+<!------分------割------线------>
+
+<body>
+
+	<div>
+		<ul class="page_num">
+			<li class="page_first" name="first"><a href="javascript:;">首页</a></li>
+			<li class="page_prev"  name="prev"><a href="javascript:;">上一页</a></li>
+			<li class="page1 active" name="1"><a href="javascript:;">1</a></li>
+			<li class="page2" name="2"><a href="javascript:;">2</a></li>
+			<li class="page3" name="3"><a href="javascript:;">3</a></li>
+			<li class="page4" name="4"><a href="javascript:;">4</a></li>
+			<li class="page5" name="5"><a href="javascript:;">5</a></li>
+			<li class="page6" name="6"><a href="javascript:;">6</a></li>
+			<li class="page7" name="7"><a href="javascript:;">7</a></li>
+			<li class="page8" name="8"><a href="javascript:;">8</a></li>
+			<li class="page9" name="9"><a href="javascript:;">9</a></li>
+			<li class="page10" name="10"><a href="javascript:;">10</a></li>
+			<li class="page_next" name="next"><a href="javascript:;">下一页</a></li>
+			<li class="page_last" name="last"><a href="javascript:;">尾页</a></li>
+		</ul>
+	</div>
+
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+	//分页类型 start
+	$('.page_num li').click(function() {
+		var $lis = $(".page_num li");
+		var len = $lis.length - 4;
+		var active = $(".page_num li.active")[0].getAttribute('name');
+		var index = this.getAttribute('name');
+		var $page1 = $('.page_num li.page1');
+		var $pageLen = $('.page_num li.page'+len);
+		var $pageActive = $('.page_num li.page'+active);
+		$lis.removeClass('active');
+		switch(index) {
+			case 'first':
+				$page1.addClass('active');
+				break;
+			case 'last':
+				$pageLen.addClass('active');
+				break;
+			case 'prev':
+				active == 1 ? $page1.addClass('active') : $pageActive.prev().addClass('active');
+				break;
+			case 'next':
+				active == len ? $pageLen.addClass('active') : $pageActive.next().addClass('active');
+				break;
+			default :
+				this.classList.add('active');
+		}
+	})
+	//分页类型 end
+
+</script>
+<!------分------割------线------>
+</html>
